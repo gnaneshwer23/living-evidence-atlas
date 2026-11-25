@@ -10,18 +10,27 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DataSourcesRouteImport } from './routes/data-sources'
 import { Route as EarlyAccessRouteImport } from './routes/early-access'
 import { Route as ScienceRouteImport } from './routes/science'
 import { Route as SolutionsRouteImport } from './routes/solutions'
 import { Route as TrustRouteImport } from './routes/trust'
 import { Route as PlatformAgentsRouteImport } from './routes/platform/agents'
+import { Route as PlatformCompanionRouteImport } from './routes/platform/companion'
 import { Route as PlatformContradictionAnalysisRouteImport } from './routes/platform/contradiction-analysis'
+import { Route as PlatformDiscoveryEngineRouteImport } from './routes/platform/discovery-engine'
+import { Route as PlatformKnowledgeGraphRouteImport } from './routes/platform/knowledge-graph'
 import { Route as PlatformMemoryRouteImport } from './routes/platform/memory'
 import { Route as PlatformWorkbenchRouteImport } from './routes/platform/workbench'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DataSourcesRoute = DataSourcesRouteImport.update({
+  id: '/data-sources',
+  path: '/data-sources',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EarlyAccessRoute = EarlyAccessRouteImport.update({
@@ -49,12 +58,27 @@ const PlatformAgentsRoute = PlatformAgentsRouteImport.update({
   path: '/platform/agents',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PlatformCompanionRoute = PlatformCompanionRouteImport.update({
+  id: '/platform/companion',
+  path: '/platform/companion',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PlatformContradictionAnalysisRoute =
   PlatformContradictionAnalysisRouteImport.update({
     id: '/platform/contradiction-analysis',
     path: '/platform/contradiction-analysis',
     getParentRoute: () => rootRouteImport,
   } as any)
+const PlatformDiscoveryEngineRoute = PlatformDiscoveryEngineRouteImport.update({
+  id: '/platform/discovery-engine',
+  path: '/platform/discovery-engine',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlatformKnowledgeGraphRoute = PlatformKnowledgeGraphRouteImport.update({
+  id: '/platform/knowledge-graph',
+  path: '/platform/knowledge-graph',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PlatformMemoryRoute = PlatformMemoryRouteImport.update({
   id: '/platform/memory',
   path: '/platform/memory',
@@ -68,35 +92,47 @@ const PlatformWorkbenchRoute = PlatformWorkbenchRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/data-sources': typeof DataSourcesRoute
   '/early-access': typeof EarlyAccessRoute
   '/science': typeof ScienceRoute
   '/solutions': typeof SolutionsRoute
   '/trust': typeof TrustRoute
   '/platform/agents': typeof PlatformAgentsRoute
+  '/platform/companion': typeof PlatformCompanionRoute
   '/platform/contradiction-analysis': typeof PlatformContradictionAnalysisRoute
+  '/platform/discovery-engine': typeof PlatformDiscoveryEngineRoute
+  '/platform/knowledge-graph': typeof PlatformKnowledgeGraphRoute
   '/platform/memory': typeof PlatformMemoryRoute
   '/platform/workbench': typeof PlatformWorkbenchRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/data-sources': typeof DataSourcesRoute
   '/early-access': typeof EarlyAccessRoute
   '/science': typeof ScienceRoute
   '/solutions': typeof SolutionsRoute
   '/trust': typeof TrustRoute
   '/platform/agents': typeof PlatformAgentsRoute
+  '/platform/companion': typeof PlatformCompanionRoute
   '/platform/contradiction-analysis': typeof PlatformContradictionAnalysisRoute
+  '/platform/discovery-engine': typeof PlatformDiscoveryEngineRoute
+  '/platform/knowledge-graph': typeof PlatformKnowledgeGraphRoute
   '/platform/memory': typeof PlatformMemoryRoute
   '/platform/workbench': typeof PlatformWorkbenchRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/data-sources': typeof DataSourcesRoute
   '/early-access': typeof EarlyAccessRoute
   '/science': typeof ScienceRoute
   '/solutions': typeof SolutionsRoute
   '/trust': typeof TrustRoute
   '/platform/agents': typeof PlatformAgentsRoute
+  '/platform/companion': typeof PlatformCompanionRoute
   '/platform/contradiction-analysis': typeof PlatformContradictionAnalysisRoute
+  '/platform/discovery-engine': typeof PlatformDiscoveryEngineRoute
+  '/platform/knowledge-graph': typeof PlatformKnowledgeGraphRoute
   '/platform/memory': typeof PlatformMemoryRoute
   '/platform/workbench': typeof PlatformWorkbenchRoute
 }
@@ -104,46 +140,62 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/data-sources'
     | '/early-access'
     | '/science'
     | '/solutions'
     | '/trust'
     | '/platform/agents'
+    | '/platform/companion'
     | '/platform/contradiction-analysis'
+    | '/platform/discovery-engine'
+    | '/platform/knowledge-graph'
     | '/platform/memory'
     | '/platform/workbench'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/data-sources'
     | '/early-access'
     | '/science'
     | '/solutions'
     | '/trust'
     | '/platform/agents'
+    | '/platform/companion'
     | '/platform/contradiction-analysis'
+    | '/platform/discovery-engine'
+    | '/platform/knowledge-graph'
     | '/platform/memory'
     | '/platform/workbench'
   id:
     | '__root__'
     | '/'
+    | '/data-sources'
     | '/early-access'
     | '/science'
     | '/solutions'
     | '/trust'
     | '/platform/agents'
+    | '/platform/companion'
     | '/platform/contradiction-analysis'
+    | '/platform/discovery-engine'
+    | '/platform/knowledge-graph'
     | '/platform/memory'
     | '/platform/workbench'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DataSourcesRoute: typeof DataSourcesRoute
   EarlyAccessRoute: typeof EarlyAccessRoute
   ScienceRoute: typeof ScienceRoute
   SolutionsRoute: typeof SolutionsRoute
   TrustRoute: typeof TrustRoute
   PlatformAgentsRoute: typeof PlatformAgentsRoute
+  PlatformCompanionRoute: typeof PlatformCompanionRoute
   PlatformContradictionAnalysisRoute: typeof PlatformContradictionAnalysisRoute
+  PlatformDiscoveryEngineRoute: typeof PlatformDiscoveryEngineRoute
+  PlatformKnowledgeGraphRoute: typeof PlatformKnowledgeGraphRoute
   PlatformMemoryRoute: typeof PlatformMemoryRoute
   PlatformWorkbenchRoute: typeof PlatformWorkbenchRoute
 }
@@ -155,6 +207,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/data-sources': {
+      id: '/data-sources'
+      path: '/data-sources'
+      fullPath: '/data-sources'
+      preLoaderRoute: typeof DataSourcesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/early-access': {
@@ -192,11 +251,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PlatformAgentsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/platform/companion': {
+      id: '/platform/companion'
+      path: '/platform/companion'
+      fullPath: '/platform/companion'
+      preLoaderRoute: typeof PlatformCompanionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/platform/contradiction-analysis': {
       id: '/platform/contradiction-analysis'
       path: '/platform/contradiction-analysis'
       fullPath: '/platform/contradiction-analysis'
       preLoaderRoute: typeof PlatformContradictionAnalysisRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/platform/discovery-engine': {
+      id: '/platform/discovery-engine'
+      path: '/platform/discovery-engine'
+      fullPath: '/platform/discovery-engine'
+      preLoaderRoute: typeof PlatformDiscoveryEngineRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/platform/knowledge-graph': {
+      id: '/platform/knowledge-graph'
+      path: '/platform/knowledge-graph'
+      fullPath: '/platform/knowledge-graph'
+      preLoaderRoute: typeof PlatformKnowledgeGraphRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/platform/memory': {
@@ -218,12 +298,16 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DataSourcesRoute: DataSourcesRoute,
   EarlyAccessRoute: EarlyAccessRoute,
   ScienceRoute: ScienceRoute,
   SolutionsRoute: SolutionsRoute,
   TrustRoute: TrustRoute,
   PlatformAgentsRoute: PlatformAgentsRoute,
+  PlatformCompanionRoute: PlatformCompanionRoute,
   PlatformContradictionAnalysisRoute: PlatformContradictionAnalysisRoute,
+  PlatformDiscoveryEngineRoute: PlatformDiscoveryEngineRoute,
+  PlatformKnowledgeGraphRoute: PlatformKnowledgeGraphRoute,
   PlatformMemoryRoute: PlatformMemoryRoute,
   PlatformWorkbenchRoute: PlatformWorkbenchRoute,
 }

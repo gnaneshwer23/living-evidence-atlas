@@ -80,28 +80,28 @@
 
 :root {
   --radius: 0.5rem;
-  --background: oklch(0.155 0.014 262);
+  --background: oklch(0.13 0.012 260);
   --foreground: oklch(0.975 0.004 247);
-  --card: oklch(0.215 0.025 258);
+  --card: oklch(0.19 0.02 258);
   --card-foreground: oklch(0.975 0.004 247);
   --popover: oklch(0.19 0.02 260);
   --popover-foreground: oklch(0.975 0.004 247);
-  --primary: oklch(0.685 0.148 237);
+  --primary: oklch(0.685 0.169 237);
   --primary-foreground: oklch(0.155 0.014 262);
   --secondary: oklch(0.24 0.03 258);
   --secondary-foreground: oklch(0.975 0.004 247);
   --muted: oklch(0.21 0.022 260);
-  --muted-foreground: oklch(0.6 0.03 257);
+  --muted-foreground: oklch(0.68 0.025 257);
   --accent: oklch(0.26 0.035 258);
   --accent-foreground: oklch(0.975 0.004 247);
   --destructive: oklch(0.64 0.2 25);
   --destructive-foreground: oklch(0.975 0.004 247);
-  --border: oklch(0.279 0.041 260);
+  --border: oklch(0.27 0.03 260);
   --input: oklch(0.279 0.041 260);
   --ring: oklch(0.685 0.148 237);
-  --verify: oklch(0.696 0.15 162);
-  --signal: oklch(0.77 0.165 70);
-  --helix: oklch(0.606 0.219 293);
+  --verify: oklch(0.696 0.17 162);
+  --signal: oklch(0.769 0.188 70);
+  --helix: oklch(0.606 0.25 292);
   --chart-1: oklch(0.685 0.148 237);
   --chart-2: oklch(0.696 0.15 162);
   --chart-3: oklch(0.77 0.165 70);
@@ -151,3 +151,29 @@
 @utility animate-node { animation: pulse-node 3.2s ease-in-out infinite; }
 @keyframes dash { to { stroke-dashoffset: -40 } }
 @utility animate-dash { stroke-dasharray: 4 6; animation: dash 2.4s linear infinite; }
+
+@utility glass {
+  background: linear-gradient(180deg, color-mix(in oklab, var(--card) 72%, transparent), color-mix(in oklab, var(--card) 42%, transparent));
+  border: 1px solid color-mix(in oklab, var(--foreground) 9%, transparent);
+  box-shadow: inset 0 1px 0 color-mix(in oklab, var(--foreground) 7%, transparent), 0 24px 60px -30px oklch(0 0 0 / 0.7);
+  backdrop-filter: blur(16px) saturate(140%);
+}
+@utility glow-ambient {
+  background:
+    radial-gradient(45% 40% at 15% 20%, color-mix(in oklab, var(--primary) 14%, transparent), transparent 70%),
+    radial-gradient(35% 35% at 85% 30%, color-mix(in oklab, var(--helix) 12%, transparent), transparent 70%),
+    radial-gradient(40% 40% at 60% 90%, color-mix(in oklab, var(--verify) 9%, transparent), transparent 70%);
+}
+@utility text-gradient {
+  background: linear-gradient(100deg, var(--primary), var(--verify) 55%, var(--helix));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+@utility grid-fine {
+  background-image: radial-gradient(color-mix(in oklab, var(--foreground) 10%, transparent) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+@keyframes rise { from { opacity: 0; transform: translateY(6px) } to { opacity: 1; transform: none } }
+@utility animate-rise { animation: rise .45s cubic-bezier(.2,.7,.2,1) both; }
+@keyframes scan { from { transform: translateX(-100%) } to { transform: translateX(300%) } }
+@utility animate-scan { animation: scan 1.6s linear infinite; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; } }

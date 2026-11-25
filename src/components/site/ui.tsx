@@ -11,7 +11,13 @@ const statusStyle: Record<Status, string> = {
 
 export function StatusTag({ s, className }: { s: Status; className?: string }) {
   return (
-    <span className={cn("inline-flex items-center gap-1.5 rounded-full border px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider", statusStyle[s], className)}>
+    <span
+      className={cn(
+        "inline-flex items-center gap-1.5 rounded-full border px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider",
+        statusStyle[s],
+        className,
+      )}
+    >
       <span className="size-1.5 rounded-full bg-current" />
       {s}
     </span>
@@ -22,7 +28,21 @@ export function Eyebrow({ children }: { children: ReactNode }) {
   return <p className="font-mono text-xs uppercase tracking-[0.2em] text-primary">{children}</p>;
 }
 
-export function Section({ id, eyebrow, title, intro, children, className }: { id?: string; eyebrow?: string; title: ReactNode; intro?: ReactNode; children?: ReactNode; className?: string }) {
+export function Section({
+  id,
+  eyebrow,
+  title,
+  intro,
+  children,
+  className,
+}: {
+  id?: string;
+  eyebrow?: string;
+  title: ReactNode;
+  intro?: ReactNode;
+  children?: ReactNode;
+  className?: string;
+}) {
   return (
     <section id={id} className={cn("border-t border-border/60 py-20 md:py-28", className)}>
       <div className="mx-auto max-w-7xl px-5 md:px-8">
@@ -38,17 +58,39 @@ export function Section({ id, eyebrow, title, intro, children, className }: { id
 }
 
 export function Card({ children, className }: { children: ReactNode; className?: string }) {
-  return <div className={cn("rounded-xl border border-border bg-card/60 p-6 transition-colors hover:border-primary/40", className)}>{children}</div>;
+  return (
+    <div
+      className={cn(
+        "glass rounded-xl p-6 transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/40",
+        className,
+      )}
+    >
+      {children}
+    </div>
+  );
 }
 
-export function PageHero({ eyebrow, title, intro, children }: { eyebrow: string; title: ReactNode; intro: ReactNode; children?: ReactNode }) {
+export function PageHero({
+  eyebrow,
+  title,
+  intro,
+  children,
+}: {
+  eyebrow: string;
+  title: ReactNode;
+  intro: ReactNode;
+  children?: ReactNode;
+}) {
   return (
     <section className="relative overflow-hidden">
       <div className="pointer-events-none absolute inset-0 grid-bg opacity-40 [mask-image:radial-gradient(ellipse_at_top,black,transparent_70%)]" />
       <div className="pointer-events-none absolute inset-0 glow-hero" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
       <div className="relative mx-auto max-w-7xl px-5 pb-20 pt-20 md:px-8 md:pt-28">
         <Eyebrow>{eyebrow}</Eyebrow>
-        <h1 className="mt-4 max-w-4xl text-4xl font-semibold leading-[1.05] md:text-6xl">{title}</h1>
+        <h1 className="mt-4 max-w-4xl text-4xl font-semibold leading-[1.05] md:text-6xl">
+          {title}
+        </h1>
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">{intro}</p>
         {children}
       </div>
