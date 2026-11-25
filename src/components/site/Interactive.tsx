@@ -454,7 +454,7 @@ export function ContradictionPanel({ compact }: { compact?: boolean }) {
                   <div
                     className={cn(
                       "absolute top-1/2 size-2.5 -translate-x-1/2 -translate-y-1/2 rotate-45",
-                      s.hi < 0 ? "bg-verify" : "bg-signal",
+                      s.hi < 0 ? "bg-verify" : "bg-conflict",
                     )}
                     style={{ left: `${X(s.e)}%` }}
                   />

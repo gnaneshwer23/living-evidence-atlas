@@ -151,7 +151,7 @@ const gEdges: E[] = [
 ];
 const edgeStyle = {
   support: { c: "var(--verify)", dash: undefined, l: "Supported (model-dependent)" },
-  contested: { c: "var(--signal)", dash: "5 5", l: "Contested" },
+  contested: { c: "var(--conflict)", dash: "5 5", l: "Contested" },
   hypothesis: { c: "var(--helix)", dash: "2 6", l: "Hypothesis" },
 } as const;
 

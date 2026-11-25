@@ -18,6 +18,9 @@ import {
   InvestigationDemo,
   PersonaTabs,
 } from "@/components/site/Interactive";
+import { Hero } from "@/components/home/Hero";
+import { Fragmentation } from "@/components/home/Fragmentation";
+import { MemoryEngine } from "@/components/home/MemoryEngine";
 import { PathwayMap } from "@/components/site/Visuals";
 import { EarlyAccessForm } from "@/components/site/EarlyAccessForm";
 import { agents, sources } from "@/lib/site-data";
@@ -25,7 +28,7 @@ import { agents, sources } from "@/lib/site-data";
 export const Route = createFileRoute("/")({
   head: () =>
     meta(
-      "HSI — Understand biology. Resolve uncertainty. Advance discovery.",
+      "HSI — The living intelligence of human biology",
       "A scientific intelligence platform for human biology: persistent scientific memory, specialised AI agents and contradiction-aware evidence verification.",
     ),
   component: Home,
@@ -34,130 +37,9 @@ export const Route = createFileRoute("/")({
 function Home() {
   return (
     <>
-      <section className="relative overflow-hidden">
-        <div className="pointer-events-none absolute inset-0 grid-bg opacity-40 [mask-image:radial-gradient(ellipse_at_top,black,transparent_75%)]" />
-        <div className="pointer-events-none absolute inset-0 glow-hero" />
-        <div className="relative mx-auto grid max-w-7xl gap-12 px-5 pb-24 pt-20 md:px-8 md:pt-28 lg:grid-cols-[1.1fr_1fr] lg:items-center">
-          <div>
-            <StatusTag s="In development" />
-            <h1 className="mt-6 text-5xl font-semibold leading-[1.02] md:text-7xl">
-              Understand biology.{" "}
-              <span className="text-muted-foreground">Resolve uncertainty.</span>{" "}
-              <span className="text-gradient">Advance discovery.</span>
-            </h1>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
-              HSI is a scientific intelligence platform for human biology. It connects evidence
-              across domains, preserves your laboratory's research memory, and uses specialised
-              agents to verify claims and expose contradictions.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link
-                to="/platform/workbench"
-                className="rounded-md bg-primary px-5 py-3 text-sm font-medium text-primary-foreground hover:bg-primary/90"
-              >
-                Explore Platform
-              </Link>
-              <Link
-                to="/early-access"
-                className="rounded-md border border-border px-5 py-3 text-sm font-medium hover:bg-accent"
-              >
-                Request Early Access
-              </Link>
-            </div>
-          </div>
-          <BioNetwork />
-        </div>
-      </section>
-
-      <Section
-        eyebrow="01 · The problem"
-        title={
-          <>
-            Biology is connected.{" "}
-            <span className="text-muted-foreground">Research is fragmented.</span>
-          </>
-        }
-      >
-        <div className="grid gap-4 md:grid-cols-4">
-          {[
-            ["Exponential literature", "Millions of papers a year; no one reads the whole field."],
-            ["Trapped lab memory", "Decisions, failed experiments and context vanish with people."],
-            ["Unresolved contradictions", "Conflicting findings are rarely reconciled in context."],
-            ["Siloed tools", "Literature, data and reasoning live in separate systems."],
-          ].map(([t, d]) => (
-            <Card key={t}>
-              <h3 className="font-semibold">{t}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">{d}</p>
-            </Card>
-          ))}
-        </div>
-      </Section>
-
-      <Section
-        eyebrow="02 · The HSI solution"
-        title="One intelligence layer for human biology."
-        intro="HSI unifies six biological domains, a persistent scientific memory and coordinated multi-agent reasoning — so evidence is connected, remembered and verified."
-      >
-        <div className="grid gap-4 md:grid-cols-3">
-          {[
-            [
-              Layers,
-              "Cross-domain intelligence",
-              "Reason across immunology, neuroscience, microbiome, genomics, tissue biology and disease mechanisms.",
-            ],
-            [
-              Database,
-              "Persistent memory",
-              "Your lab's questions, sources and decisions remain available and permissioned.",
-            ],
-            [
-              Brain,
-              "Multi-agent reasoning",
-              "Specialised agents synthesise, verify, contrast and propose — for expert review.",
-            ],
-          ].map(([I, t, d]) => {
-            const Icon = I as typeof Brain;
-            return (
-              <Card key={t as string}>
-                <Icon className="size-5 text-primary" />
-                <h3 className="mt-4 font-semibold">{t as string}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{d as string}</p>
-              </Card>
-            );
-          })}
-        </div>
-      </Section>
-
-      <Section
-        eyebrow="03 · Scientific Memory Engine"
-        title="Research that remembers."
-        intro="The core of HSI. Memory that preserves lineage, recalls context and synthesises across projects — under your institution's permissions."
-      >
-        <div className="grid gap-4 md:grid-cols-4">
-          {[
-            ["Persistent lab memory", "Questions, notes and protocols retained."],
-            ["Lineage tracking", "Every conclusion traces to sources and decisions."],
-            ["Contextual recall", "Relevant past work surfaces when you need it."],
-            [
-              "Cross-project synthesis",
-              "Connect findings across projects you're authorised to see.",
-            ],
-          ].map(([t, d]) => (
-            <Card key={t} className="border-helix/30">
-              <GitBranch className="size-5 text-helix" />
-              <h3 className="mt-4 font-semibold">{t}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">{d}</p>
-            </Card>
-          ))}
-        </div>
-        <Link
-          to="/platform/memory"
-          className="mt-8 inline-block text-sm text-primary hover:underline"
-        >
-          Inside the Memory Engine →
-        </Link>
-      </Section>
-
+      <Hero />
+      <Fragmentation />
+      <MemoryEngine />
       <Section eyebrow="04 · Six scientific domains" title="Presented equally. Connected deeply.">
         <DomainTabs />
         <PathwayMap className="mt-8" />

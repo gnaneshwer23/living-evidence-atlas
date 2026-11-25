@@ -28,3 +28,8 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project rules
+- Homepage sections live in `src/components/home/`; the 3D hero (`HeroScene`, React Three Fiber) is lazy-loaded client-side with a static SVG fallback for mobile, reduced motion and no-WebGL — keeps SSR safe and phones fast.
+- Colours come only from tokens in `src/styles.css`; WebGL colours in `HeroScene` mirror those tokens by hex because canvas cannot read CSS variables.
+- Values rendered into inline styles during SSR must be rounded (`toFixed`) — unrounded floats cause hydration mismatches.
