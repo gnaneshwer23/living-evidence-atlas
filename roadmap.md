@@ -6,5 +6,5 @@
 - [ ] Science pages: /science + six domain pages, each distinct
 - [ ] Solutions pages: students, researchers, professors, laboratories, institutions, biotech-pharma, clinical-research (distinct dashboards)
 - [ ] Resources: /how-it-works, /data, /benchmark, /trust, /research, /about, /contact, /early-access; redirects from old URLs
-- [ ] Final QA: responsive, accessibility, links
+- [ ] Final QA: responsive, accessibility, every button/link/demo click-tested (in progress)
 - [x] Palette: navy/mint/gold, red only for conflict

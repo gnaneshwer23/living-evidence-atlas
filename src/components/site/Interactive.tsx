@@ -55,7 +55,7 @@ function Drawer({ rec, onClose }: { rec: (typeof records)[number] | null; onClos
     <aside
       aria-hidden={!rec}
       className={cn(
-        "absolute inset-y-0 right-0 z-10 w-full max-w-sm border-l border-border bg-popover/95 p-5 backdrop-blur-xl transition-transform duration-300",
+        "absolute inset-y-0 right-0 z-10 w-full max-w-sm lg:right-[280px] border-l border-border bg-popover/95 p-5 backdrop-blur-xl transition-transform duration-300",
         rec ? "translate-x-0" : "pointer-events-none translate-x-full",
       )}
     >
@@ -109,6 +109,12 @@ export function InvestigationDemo() {
   const [tick, setTick] = useState(0);
   const [rec, setRec] = useState<(typeof records)[number] | null>(null);
   const s = investigationStages[i]!;
+  useEffect(() => {
+    if (!rec) return;
+    const k = (e: KeyboardEvent) => e.key === "Escape" && setRec(null);
+    window.addEventListener("keydown", k);
+    return () => window.removeEventListener("keydown", k);
+  }, [rec]);
   const lines = s.o.split("\n");
   useEffect(() => {
     setTick(0);

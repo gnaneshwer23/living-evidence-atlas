@@ -23,7 +23,7 @@ export function Header() {
   const [open, setOpen] = useState(false);
   return (
     <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-xl">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 md:px-8">
+      <div className="mx-auto flex h-16 max-w-[1440px] items-center justify-between px-5 md:px-10">
         <Logo />
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Main">
           {nav.map((g) => (
@@ -53,11 +53,11 @@ export function Header() {
             to="/platform/workbench"
             className="rounded-md px-3 py-2 text-sm text-muted-foreground hover:text-foreground"
           >
-            Explore Workbench
+            Explore HSI
           </Link>
           <Link
             to="/early-access"
-            className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90"
+            className="bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90"
           >
             Request Early Access
           </Link>
