@@ -1,23 +1,110 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { Brain, Database, GitBranch, Layers, ShieldCheck, FileText, FlaskConical, Network, Lightbulb } from "lucide-react";
+import { Card, Section, StatusTag, meta } from "@/components/site/ui";
+import { BioNetwork, ContradictionPanel, DomainTabs, InvestigationDemo, PersonaTabs } from "@/components/site/Interactive";
+import { EarlyAccessForm } from "@/components/site/EarlyAccessForm";
+import { agents, sources } from "@/lib/site-data";
 
-// The home route ships no og:image, so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => meta("HSI — Understand biology. Resolve uncertainty. Advance discovery.", "A scientific intelligence platform for human biology: persistent scientific memory, specialised AI agents and contradiction-aware evidence verification."),
+  component: Home,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+function Home() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <>
+      <section className="relative overflow-hidden">
+        <div className="pointer-events-none absolute inset-0 grid-bg opacity-40 [mask-image:radial-gradient(ellipse_at_top,black,transparent_75%)]" />
+        <div className="pointer-events-none absolute inset-0 glow-hero" />
+        <div className="relative mx-auto grid max-w-7xl gap-12 px-5 pb-24 pt-20 md:px-8 md:pt-28 lg:grid-cols-[1.1fr_1fr] lg:items-center">
+          <div>
+            <StatusTag s="In development" />
+            <h1 className="mt-6 text-5xl font-semibold leading-[1.02] md:text-7xl">Understand biology. <span className="text-muted-foreground">Resolve uncertainty.</span> <span className="text-primary">Advance discovery.</span></h1>
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">HSI is a scientific intelligence platform for human biology. It connects evidence across domains, preserves your laboratory's research memory, and uses specialised agents to verify claims and expose contradictions.</p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link to="/platform/workbench" className="rounded-md bg-primary px-5 py-3 text-sm font-medium text-primary-foreground hover:bg-primary/90">Explore Platform</Link>
+              <Link to="/early-access" className="rounded-md border border-border px-5 py-3 text-sm font-medium hover:bg-accent">Request Early Access</Link>
+            </div>
+          </div>
+          <BioNetwork />
+        </div>
+      </section>
+
+      <Section eyebrow="01 · The problem" title={<>Biology is connected. <span className="text-muted-foreground">Research is fragmented.</span></>}>
+        <div className="grid gap-4 md:grid-cols-4">
+          {[
+            ["Exponential literature", "Millions of papers a year; no one reads the whole field."],
+            ["Trapped lab memory", "Decisions, failed experiments and context vanish with people."],
+            ["Unresolved contradictions", "Conflicting findings are rarely reconciled in context."],
+            ["Siloed tools", "Literature, data and reasoning live in separate systems."],
+          ].map(([t, d]) => <Card key={t}><h3 className="font-semibold">{t}</h3><p className="mt-2 text-sm text-muted-foreground">{d}</p></Card>)}
+        </div>
+      </Section>
+
+      <Section eyebrow="02 · The HSI solution" title="One intelligence layer for human biology." intro="HSI unifies six biological domains, a persistent scientific memory and coordinated multi-agent reasoning — so evidence is connected, remembered and verified.">
+        <div className="grid gap-4 md:grid-cols-3">
+          {[
+            [Layers, "Cross-domain intelligence", "Reason across immunology, neuroscience, microbiome, genomics, tissue biology and disease mechanisms."],
+            [Database, "Persistent memory", "Your lab's questions, sources and decisions remain available and permissioned."],
+            [Brain, "Multi-agent reasoning", "Specialised agents synthesise, verify, contrast and propose — for expert review."],
+          ].map(([I, t, d]) => { const Icon = I as typeof Brain; return <Card key={t as string}><Icon className="size-5 text-primary" /><h3 className="mt-4 font-semibold">{t as string}</h3><p className="mt-2 text-sm text-muted-foreground">{d as string}</p></Card>; })}
+        </div>
+      </Section>
+
+      <Section eyebrow="03 · Scientific Memory Engine" title="Research that remembers." intro="The core of HSI. Memory that preserves lineage, recalls context and synthesises across projects — under your institution's permissions.">
+        <div className="grid gap-4 md:grid-cols-4">
+          {[["Persistent lab memory", "Questions, notes and protocols retained."], ["Lineage tracking", "Every conclusion traces to sources and decisions."], ["Contextual recall", "Relevant past work surfaces when you need it."], ["Cross-project synthesis", "Connect findings across projects you're authorised to see."]].map(([t, d]) => (
+            <Card key={t} className="border-helix/30"><GitBranch className="size-5 text-helix" /><h3 className="mt-4 font-semibold">{t}</h3><p className="mt-2 text-sm text-muted-foreground">{d}</p></Card>
+          ))}
+        </div>
+        <Link to="/platform/memory" className="mt-8 inline-block text-sm text-primary hover:underline">Inside the Memory Engine →</Link>
+      </Section>
+
+      <Section eyebrow="04 · Six scientific domains" title="Presented equally. Connected deeply."><DomainTabs /></Section>
+
+      <Section eyebrow="05 · Scientific AI agents" title="Specialised agents that collaborate." intro="Each agent has a narrow responsibility. Outputs are passed, checked and contested before they reach you.">
+        <div className="grid gap-4 md:grid-cols-3">
+          {agents.map((a) => <Card key={a.name}><div className="flex items-start justify-between gap-2"><h3 className="font-semibold">{a.name}</h3><StatusTag s={a.status} /></div><p className="mt-3 text-sm text-muted-foreground">{a.role}</p></Card>)}
+        </div>
+      </Section>
+
+      <Section eyebrow="06 · Investigation demonstration" title="From a research question to the next experiment." intro="Step through an illustrative investigation on the gut–brain axis."><InvestigationDemo /></Section>
+
+      <Section eyebrow="07 · Contradiction intelligence" title="Conflicting findings, evaluated in context."><ContradictionPanel /></Section>
+
+      <Section eyebrow="08 · Research outputs" title="Outputs built for scientific review.">
+        <div className="grid gap-4 md:grid-cols-4">
+          {[[FileText, "Evidence dossiers"], [Lightbulb, "Mechanistic hypotheses"], [FlaskConical, "Experimental protocols"], [Network, "Knowledge graphs"]].map(([I, t]) => { const Icon = I as typeof FileText; return <Card key={t as string}><Icon className="size-5 text-verify" /><h3 className="mt-4 font-semibold">{t as string}</h3><p className="mt-2 font-mono text-xs text-muted-foreground">provenance · uncertainty · review status</p></Card>; })}
+        </div>
+      </Section>
+
+      <Section eyebrow="09 · Solutions" title="Built for every research user."><PersonaTabs /></Section>
+
+      <Section eyebrow="10 · Data ecosystem" title="Grounded in public scientific resources." intro="Integration status is shown honestly. Names are listed for reference only and do not imply partnership.">
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {sources.map((s) => <div key={s.name} className="flex items-center justify-between rounded-lg border border-border bg-card/40 px-4 py-3"><div><p className="text-sm font-medium">{s.name}</p><p className="font-mono text-[11px] text-muted-foreground">{s.type}</p></div><StatusTag s={s.status} /></div>)}
+        </div>
+      </Section>
+
+      <Section eyebrow="11 · Scientific Companion" title="A companion that understands your research context." intro="A text-first interface to the HSI system — not a separate source of scientific truth.">
+        <div className="max-w-2xl space-y-3 rounded-xl border border-border bg-card/50 p-6 font-mono text-sm">
+          <div className="flex justify-end"><StatusTag s="Prototype" /></div>
+          <p><span className="text-muted-foreground">you ›</span> What did we conclude about butyrate dosing last month?</p>
+          <p className="text-foreground/90"><span className="text-primary">hsi ›</span> Your 14 Oct investigation flagged dose as the main explanatory variable (confidence: low). 2 new murine studies have appeared since. Inspect evidence?</p>
+          <p className="pt-2 text-xs text-muted-foreground">Voice & audiovisual interaction — <span className="text-foreground">planned</span></p>
+        </div>
+      </Section>
+
+      <Section eyebrow="12 · Trust & governance" title="Scientific intelligence must earn your trust.">
+        <div className="grid gap-4 md:grid-cols-4">
+          {["Source provenance", "Explicit uncertainty", "Data sovereignty", "Human-in-the-loop review"].map((t) => <Card key={t}><ShieldCheck className="size-5 text-verify" /><h3 className="mt-4 font-semibold">{t}</h3></Card>)}
+        </div>
+        <Link to="/trust" className="mt-8 inline-block text-sm text-primary hover:underline">Our intended safeguards →</Link>
+      </Section>
+
+      <Section eyebrow="13 · Early access" title="Help shape the future of scientific intelligence." intro="We invite students, researchers, universities, laboratories and life-science organisations to take part in research validation and potential pilots.">
+        <EarlyAccessForm />
+      </Section>
+    </>
   );
 }
